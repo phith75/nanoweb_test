@@ -71,6 +71,21 @@
         </tr>
         @endforeach
         </tbody>
+        <div class="pagination">
+            @if($currentPage > 1)
+                <a href="{{route('list', ['page' =>$currentPage -1 ])}}">&lt;&lt;</a>
+            @endif
+            @for($i = max(1,$currentPage-1); $i <= min($totalPages, $currentPage+ 2); $i++)
+                @if($i == $currentPage)
+                    <span>{{$i}}</span>
+                    @else
+                        <a href="{{route('list', ['page' => $i])}}">{{$i}}</a>
+                    @endif
+            @endfor
+            @if($currentPage < $totalPages)
+                    <a href="{{route('list', ['page' =>$currentPage +1])}}">&gt;&gt;</a>
+            @endif
+        </div>
     </table>
 </div>
     {{-- Footer --}}
